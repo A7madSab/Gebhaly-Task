@@ -19,6 +19,9 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart"
 import CloseIcon from "@material-ui/icons/Close"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 
+import { connect } from "react-redux"
+import { addProductToCart } from "../redux/actions"
+
 const styles = makeStyles(theme => ({
     cardL: {
         borderRadius: 35
@@ -45,20 +48,23 @@ const styles = makeStyles(theme => ({
     }
 }))
 
-const ProductCard = ({ id, createdAt, name, picture, category, color, available_quantity, price }) => {
+const ProductCard = ({ id, createdAt, name, picture, category, color, available_quantity, price, addProductToCart }) => {
     const [expanded, setExpanded] = useState(false)
     const [snackbar, setSnackbar] = useState(false)
+    const product = { id, createdAt, name, picture, category, color, available_quantity, price }
     const classes = styles()
 
     const addToCart = () => {
         setSnackbar(true)
+        addProductToCart(product)
     }
 
-    const handleOnCardClick = () => {
+    const handleOnCardClick = (product) => {
 
     }
 
     return (
+        <>
             <Card onClick={handleOnCardClick} className={classes.card}>
                 <CardMedia image={picture} title="Flower" className={classes.media} />
                 <CardContent className={classes.content}>
@@ -71,7 +77,7 @@ const ProductCard = ({ id, createdAt, name, picture, category, color, available_
                     <CardActions style={{ padding: 0 }}>
                         <Grid container direction="column">
                             <Typography>
-                                {price + "EGP"}
+                                {price + " EGP"}
                             </Typography>
                             <Typography>
                                 Available: {available_quantity > 0
@@ -113,15 +119,20 @@ const ProductCard = ({ id, createdAt, name, picture, category, color, available_
                         </CardContent>
                     </Collapse>
                 </CardContent>
-
-                {/* Snackbar */}
-                <Snackbar open={snackbar} autoHideDuration={6000} onClose={() => setSnackbar(false)}>
-                    <Alert onClose={() => setSnackbar(false)} severity="success">
-                        Successfully created the account, Check your email.
-                </Alert>
-                </Snackbar>
             </Card>
+
+            {/* Snackbar */}
+            <Snackbar open={snackbar} autoHideDuration={6000} onClose={() => setSnackbar(false)}>
+                <Alert onClose={() => setSnackbar(false)} severity="success">
+                    Added Product To Cart.
+               </Alert>
+            </Snackbar>
+        </>
     )
 }
 
-export default ProductCard
+const mapDispatchToProps = dispatch => ({
+    addProductToCart: product => dispatch(addProductToCart(product))
+})
+
+export default connect(null, mapDispatchToProps)(ProductCard)
