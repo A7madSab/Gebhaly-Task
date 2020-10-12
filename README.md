@@ -8,6 +8,7 @@ This project is a small task from gebhaly, Shopping Cart
 - Redux / Thunks
 - Material-UI
 - Sass
+- <a href="https://mockapi.io/">mockapi.io/</a>
 
 ## Note
 
