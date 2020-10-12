@@ -6,7 +6,7 @@ export default createMuiTheme({
             main: "#44a6c6",
         },
         secondary: {
-            main: "#7BA0B5"
+            main: "#000"
         }
     },
     overrides: {

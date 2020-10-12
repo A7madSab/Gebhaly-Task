@@ -29,9 +29,7 @@ const Products = ({ getProducts, products }) => {
     )
 }
 
-const mapStateToProps = ({ products }) => ({
-    products: products
-})
+const mapStateToProps = ({ products }) => ({ products })
 
 const mapDispatchToProps = dispatch => ({
     getProducts: () => dispatch(getProducts())

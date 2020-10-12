@@ -18,6 +18,7 @@ import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline"
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart"
 import CloseIcon from "@material-ui/icons/Close"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
+// import { useHistory } from "react-router-dom"
 
 import { connect } from "react-redux"
 import { addProductToCart } from "../redux/actions"
@@ -33,6 +34,9 @@ const styles = makeStyles(theme => ({
     media: {
         height: 0,
         paddingTop: "56.25%",
+        "&:hover": {
+            cursor: "pointer"
+        }
     },
     content: {
         display: "flex",
@@ -51,22 +55,19 @@ const styles = makeStyles(theme => ({
 const ProductCard = ({ id, createdAt, name, picture, category, color, available_quantity, price, addProductToCart }) => {
     const [expanded, setExpanded] = useState(false)
     const [snackbar, setSnackbar] = useState(false)
-    const product = { id, createdAt, name, picture, category, color, available_quantity, price }
+    // let history = useHistory()
     const classes = styles()
 
     const addToCart = () => {
         setSnackbar(true)
-        addProductToCart(product)
-    }
-
-    const handleOnCardClick = (product) => {
-
+        addProductToCart({ id, createdAt, name, picture, category, color, available_quantity, price })
     }
 
     return (
         <>
-            <Card onClick={handleOnCardClick} className={classes.card}>
-                <CardMedia image={picture} title="Flower" className={classes.media} />
+            <Card className={classes.card}>
+                <CardMedia image={picture} className={classes.media} />
+                {/* onClick={() => history.push(`/product/${id}`)} */}
                 <CardContent className={classes.content}>
 
                     <div className={classes.cardText}>
@@ -122,7 +123,7 @@ const ProductCard = ({ id, createdAt, name, picture, category, color, available_
             </Card>
 
             {/* Snackbar */}
-            <Snackbar open={snackbar} autoHideDuration={6000} onClose={() => setSnackbar(false)}>
+            <Snackbar open={snackbar} autoHideDuration={1000} onClose={() => setSnackbar(false)}>
                 <Alert onClose={() => setSnackbar(false)} severity="success">
                     Added Product To Cart.
                </Alert>
