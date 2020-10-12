@@ -12,51 +12,18 @@ import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
 import CardContent from "@material-ui/core/CardContent"
 import CardActions from "@material-ui/core/CardActions"
-import { makeStyles } from "@material-ui/core/styles"
 
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline"
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart"
 import CloseIcon from "@material-ui/icons/Close"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-// import { useHistory } from "react-router-dom"
 
 import { connect } from "react-redux"
 import { addProductToCart } from "../redux/actions"
 
-const styles = makeStyles(theme => ({
-    cardL: {
-        borderRadius: 35
-    },
-    title: {
-        color: theme.palette.primary.main,
-        fontWeight: "bold"
-    },
-    media: {
-        height: 0,
-        paddingTop: "56.25%",
-        "&:hover": {
-            cursor: "pointer"
-        }
-    },
-    content: {
-        display: "flex",
-        flexDirection: "column",
-        flexBasis: "50%",
-        backgroundColor: "#eee"
-    },
-    linkAction: {
-        textDecoration: "none",
-        textTransform: "uppercase",
-        color: theme.palette.primary.main,
-        fontWeight: "bold"
-    }
-}))
-
 const ProductCard = ({ id, createdAt, name, picture, category, color, available_quantity, price, addProductToCart }) => {
     const [expanded, setExpanded] = useState(false)
     const [snackbar, setSnackbar] = useState(false)
-    // let history = useHistory()
-    const classes = styles()
 
     const addToCart = () => {
         setSnackbar(true)
@@ -65,13 +32,12 @@ const ProductCard = ({ id, createdAt, name, picture, category, color, available_
 
     return (
         <>
-            <Card className={classes.card}>
-                <CardMedia image={picture} className={classes.media} />
-                {/* onClick={() => history.push(`/product/${id}`)} */}
-                <CardContent className={classes.content}>
+            <Card>
+                <CardMedia image={picture} className="media" />
+                <CardContent>
 
-                    <div className={classes.cardText}>
-                        <Typography variant="h6" className={classes.title}>
+                    <div>
+                        <Typography variant="h6" className="title">
                             {name}
                         </Typography>
                     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 
+import Grid from "@material-ui/core/Grid"
 import Table from "@material-ui/core/Table"
 import Paper from "@material-ui/core/Paper"
 import TableRow from "@material-ui/core/TableRow"
@@ -7,24 +8,17 @@ import Container from "@material-ui/core/Container"
 import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
 import TableHead from "@material-ui/core/TableHead"
-import { makeStyles } from "@material-ui/core/styles"
 import TableContainer from "@material-ui/core/TableContainer"
 
 import { connect } from "react-redux"
 import { Typography } from "@material-ui/core"
-
-const useStyles = makeStyles({
-    table: {
-        minWidth: 650
-    }
-})
+import { Link } from "react-router-dom"
 
 const createData = (name, brand, price, quantity) => {
     return { name, brand, price, quantity, totalPrice: price * quantity }
 }
 
 const Checkout = ({ cart }) => {
-    const classes = useStyles()
     const [rows, setRows] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
 
@@ -42,7 +36,7 @@ const Checkout = ({ cart }) => {
     return (
         <Container>
             <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label="simple table">
+                <Table className="table" aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Name</TableCell>
@@ -67,9 +61,20 @@ const Checkout = ({ cart }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Typography>
-                Total Price:{totalPrice}
-            </Typography>
+
+            <Grid container alignItems="center" justify="space-between">
+                <Typography className="table-total-price">
+                    <Link to="/">
+                        Add Products
+                    </Link>
+                </Typography>
+
+                <Typography className="table-total-price">
+                    Total Price:{totalPrice}
+                </Typography>
+            </Grid>
+
+
         </Container>
     )
 }

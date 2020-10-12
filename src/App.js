@@ -1,5 +1,5 @@
 import React from "react"
-
+import "./styles/index.scss"
 import Navigation from "./navigation"
 import { ThemeProvider } from "@material-ui/core/styles"
 

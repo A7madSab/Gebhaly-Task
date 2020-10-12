@@ -1,5 +1,9 @@
 import React from "react"
 
+import { useHistory } from "react-router-dom"
+import { connect } from "react-redux"
+import { addProduct, removeProduct, deleteProduct } from "../redux/actions"
+
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
@@ -9,42 +13,13 @@ import CloseIcon from "@material-ui/icons/Close"
 import RemoveIcon from "@material-ui/icons/Remove"
 import IconButton from "@material-ui/core/IconButton"
 
-import { addProduct, removeProduct, deleteProduct } from "../redux/actions"
-import { connect } from "react-redux"
-import { makeStyles } from "@material-ui/core/styles"
-import { useHistory } from "react-router-dom"
-
-const styles = makeStyles({
-    container: {
-        height: "100%"
-    },
-    card: {
-        width: "100%",
-        borderRadius: 35,
-        margin: 5,
-        padding: 0
-    },
-    img: {
-        width: "96px",
-        height: "96px",
-        objectFit: "contain",
-        "&:hover": {
-            cursor: "pointer"
-        }
-    },
-    textSection: {
-        padding: 15,
-        paddingRight: 0
-    }
-})
 
 const CartCard = ({ id, name, picture, category, color, available_quantity, createdAt, price, quantity, addProduct, removeProduct, deleteProduct }) => {
-    const classes = styles()
     let history = useHistory()
 
     return (
-        <Grid className={classes.card}>
-            <Grid container direction="row" className={classes.container}>
+        <Grid className="row">
+            <Grid container direction="row" className="container">
 
                 <Grid item container xs={1} justify="center" alignItems="center">
                     <IconButton onClick={() => deleteProduct(id)}>
@@ -53,10 +28,10 @@ const CartCard = ({ id, name, picture, category, color, available_quantity, crea
                 </Grid>
 
                 <Grid item container xs={2} justify="center" alignItems="center">
-                    <img onClick={() => history.push(`/product/${id}`)} className={classes.img} src={picture} alt="Catrogry" />
+                    <img onClick={() => history.push(`/product/${id}`)} className="img" src={picture} alt="Catrogry" />
                 </Grid>
 
-                <Grid item container xs={9} justify="center" alignItems="center" direction="row" className={classes.textSection}>
+                <Grid item container xs={9} justify="center" alignItems="center" direction="row" className="textSection">
                     <Grid item xs={9}>
                         <Grid container alignItems="center">
                             <Grid item style={{ padding: 5 }}>

@@ -1,0 +1,70 @@
+$primaryFont: "Century Gothic", Century, Helvetica, sans-serif;
+$primaryColor: #44a6c6;
+$lightColor: #f4f4f4;
+$spacing: 8px;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $lightColor;
+    font-family: $primaryFont;
+    line-height: 1.6;
+}
+
+.table {
+    min-width: 650;
+}
+
+.table-total-price {
+    padding: 25px;
+}
+
+.navbar {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.button {
+    margin-right: $spacing * 2;
+    border-radius: 35;
+}
+
+.row {
+    width: 100%;
+    border-radius: 35;
+    margin: 5px;
+    padding: 0px;
+
+    .container {
+        height: 100%;
+    }
+
+    .img {
+        width: 96px;
+        height: 96px;
+        object-fit: contain;
+        :hover {
+            cursor: pointer;
+        }
+    }
+
+    .textSection {
+        padding: 15px;
+        padding-right: 0px;
+    }
+}
+
+.title {
+    color: $primaryColor;
+    font-weight: bold;
+    display: block;
+}
+
+.media {
+    height: 0px;
+    padding-top: 56.25%;
+}
